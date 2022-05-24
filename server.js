@@ -1,6 +1,12 @@
+// Dependencies
 const express = require('express');
 const session = require('express-session');
 const routes = require('./controllers');
+// Handle bar engine (Activity 04)
+const exphbs = require('express-handlebars');
+const path = require('path');
+const hbs = exphbs.create({});
+
 
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
@@ -24,6 +30,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(routes);
+
+// Set Handlebars as the default template engine.
+app.engine('handlebars', hbs.engine);
+app.set('view engine', 'handlebars');
+// joins the static style pages from public with the handlebar engines html?? (Ask About This)
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(require('./controllers/api/blogRoutes'));
+app.use(require('./controllers/api/userRoutes'));
 
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log('Now listening'));
