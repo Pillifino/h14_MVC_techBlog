@@ -1,3 +1,5 @@
+
+
 const loginFormHandler = async (event) => {
   // TODO: Add a comment describing the functionality of this statement
   event.preventDefault();
@@ -7,17 +9,20 @@ const loginFormHandler = async (event) => {
   const password = document.querySelector('#password-login').value.trim();
 
   if (email && password) {
+    console.log('post /api/users/login')
       // Sends an api route to userRoutes to save the users session
     const response = await fetch('/api/users/login', {
       method: 'POST',
       body: JSON.stringify({ email, password }),
       headers: { 'Content-Type': 'application/json' },
     });
-
+    
     if (response.ok) {
-      document.location.replace('/');
+      document.location.replace('/api/blogs');
     } else {
-      alert('Failed to log in');
+      let tempRes = JSON.parse(response.body);
+      console.log(tempRes);
+      alert(response.statusText);
     }
   }
 };
@@ -30,6 +35,7 @@ const signupFormHandler = async (event) => {
   const password = document.querySelector('#password-signup').value.trim();
 
   if (username && email && password) {
+    console.log(username,email,password)
     const response = await fetch('/api/users', {
       method: 'POST',
       body: JSON.stringify({ username, email, password }),
@@ -37,7 +43,7 @@ const signupFormHandler = async (event) => {
     });
 
     if (response.ok) {
-      document.location.replace('/');
+      document.location.replace('/api/blogs');
     } else {
       alert('Failed to sign up.');
     }

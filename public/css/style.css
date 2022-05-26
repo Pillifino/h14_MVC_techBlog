@@ -77,14 +77,18 @@ nav a:hover {
 }
 
 .btn-no-style {
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
+  text-align: center;
+  display: inline-block;
+  padding: 0.5rem 1.2rem;
+  margin: 0;
   text-decoration: none;
-  font-size: 100%;
-  transition: color 0.1s;
-  margin-left: 16px;
+  font-size: 1rem;
+  border-radius: 0.3rem;
+  border: 1px solid transparent;
+  outline: none;
+  color: #1a1a1a;
+  background-color: #f7edc0;
+  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
 }
 
 img {
