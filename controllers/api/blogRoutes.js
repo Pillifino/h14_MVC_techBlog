@@ -39,15 +39,6 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
-router.get('/', async (req, res) => {
-  console.log('homepage root route');
-  const blogData = await Blog.findAll().catch((err) => {
-    console.log('is logged in: ', req.session.loggedin);
-    if(err)  res.json(err);
-  
-  });
-  const blogs = blogData.map((blog) => blog.get({ plain: true }));
-  res.render('blog', { blogs , username:req.session.username, loggedin:req.session.loggedin });
-});
+
 
 module.exports = router;

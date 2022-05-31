@@ -18,7 +18,7 @@ const loginFormHandler = async (event) => {
     });
     
     if (response.ok) {
-      document.location.replace('/api/blogs');
+      document.location.replace('/dashboard');
     } else {
       let tempRes = JSON.parse(response.body);
       console.log(tempRes);
@@ -43,7 +43,7 @@ const signupFormHandler = async (event) => {
     });
 
     if (response.ok) {
-      document.location.replace('/api/blogs');
+      document.location.replace('/dashboard');
     } else {
       alert('Failed to sign up.');
     }
